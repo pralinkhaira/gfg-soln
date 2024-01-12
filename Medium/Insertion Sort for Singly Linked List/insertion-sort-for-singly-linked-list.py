@@ -20,6 +20,7 @@ class Solution:
             curr = prev.next
             
         return dummy.next
+
 #{ 
  # Driver Code Starts
 #Initial Template for Python 3
