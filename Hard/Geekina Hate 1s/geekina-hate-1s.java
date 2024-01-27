@@ -20,10 +20,8 @@ public class Main{
   
 } 
 // } Driver Code Ends
-
 class Solution{
     public long findNthNumer(int n, int k){
-        // Code Here.
           long low = 0, high = (long)(1e18);
         dp = new Long[2][65][65];
         while(low <= high){
@@ -32,8 +30,7 @@ class Solution{
             if(count >= n)
                 high = mid - 1;
             else
-                low = mid + 1;
-        }
+                low = mid + 1;}
         return low;
     }
     private long find(long n, int k){
@@ -65,7 +62,4 @@ class Solution{
             Arrays.fill(dp[1][i], null);
         }
     }
-    private Long dp[][][];
-
-    
-}
+    private Long dp[][][];}
