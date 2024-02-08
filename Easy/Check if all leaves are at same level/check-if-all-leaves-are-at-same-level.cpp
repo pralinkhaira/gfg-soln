@@ -89,7 +89,6 @@ Node* buildTree(string str)
 // } Driver Code Ends
 class Solution{
   public:
-    /*You are required to complete this method*/
     bool ans=true;
     int solve(Node * root,int l){
         if (root == NULL) return 0;
@@ -106,6 +105,7 @@ class Solution{
         return ans;
     }
 };
+
 
 //{ Driver Code Starts.
 // Driver program to test size function
