@@ -61,51 +61,32 @@ class insertion
         }
     }}
 // } Driver Code Ends
-
-
-
-
-//User function Template for Java
-
-/*class Node
-    {
-        int data;
-        Node next;
-        Node(int d) {data = d; next = null; }
-    }
-    */
 class Solution
 {
-    public static Node insertionSort(Node head_ref)
+    public static Node insertionSort(Node head)
     {
-        //code here
-        if(head_ref == null)
-            return null;
-        Node curr=head_ref.next;
-        Node prev=head_ref;
-        while(curr!=null) {
-            if(curr.data<prev.data) {
-                if(head_ref.data>curr.data) {
-                    prev.next=curr.next;
-                    curr.next=head_ref;
-                    head_ref=curr;
-                    curr=prev.next;
-                    continue;
-                }
-                Node temp=head_ref;
-                while(temp.next.data<curr.data) {
-                    temp=temp.next;
-                }
-                prev.next=curr.next;
-                curr.next=temp.next;
-                temp.next=curr;
-                curr=prev.next;
+        if (head == null || head.next == null) return head;
+
+        Node dummy = new Node(0); // Dummy node to mark the beginning of the sorted list
+        Node prevSorted = dummy; // Pointer to the last node of the sorted list
+
+        while (head != null) {
+            Node nextNode = head.next; // Store the next node to avoid losing it
+
+            // Find the position to insert the current node in the sorted list
+            while (prevSorted.next != null && prevSorted.next.data < head.data) {
+                prevSorted = prevSorted.next;
             }
-            else {
-                prev=curr;
-                curr=curr.next;
-            }
+
+            // Insert the current node in the sorted list
+            head.next = prevSorted.next;
+            prevSorted.next = head;
+
+            // Reset pointers for the next iteration
+            head = nextNode;
+            prevSorted = dummy; // Reset prevSorted to the beginning of the sorted list
         }
-        return head_ref;
+
+        return dummy.next; // Return the sorted list starting from the next of the dummy node
     }
 }
