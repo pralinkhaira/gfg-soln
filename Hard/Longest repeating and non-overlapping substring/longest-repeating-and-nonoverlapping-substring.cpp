@@ -3,38 +3,32 @@
 using namespace std;
 
 // } Driver Code Ends
-
-
 class Solution {
-public:
+  public:
     string longestSubstring(string s, int n) {
-        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
-        unordered_map<string, int> lastIndex;
+       // code here
+    vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+    int mx_length = 0, last = 0;
+    for (int i = 1; i <= n; i++) {
+        for (int j = i + 1; j <= n; j++) {
+            if (s[i - 1] == s[j - 1] && dp[i - 1][j - 1] < (j - i)) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
 
-        int maxLength = 0;
-        int endIdx = 0;
-
-        for (int i = 1; i <= n; ++i) {
-            for (int j = i + 1; j <= n; ++j) {
-                if (s[i - 1] == s[j - 1] && dp[i - 1][j - 1] < j - i) {
-                    dp[i][j] = dp[i - 1][j - 1] + 1;
-
-                    if (dp[i][j] > maxLength) {
-                        maxLength = dp[i][j];
-                        endIdx = i - 1;
-                    }
-                } else {
-                    dp[i][j] = 0;
+                if (dp[i][j] > mx_length) {
+                    mx_length = dp[i][j];
+                    last = i - 1;
                 }
             }
         }
-
-        if (maxLength == 0) {
-            return "-1";
-        }
-
-        return s.substr(endIdx - maxLength + 1, maxLength);
     }
+
+    if (mx_length == 0) {
+        return "-1";
+    } else {
+        return s.substr(last - mx_length + 1, mx_length);
+    }
+       
+   }
 };
 
 
