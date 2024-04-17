@@ -4,37 +4,25 @@ using namespace std;
 
 // } Driver Code Ends
 
+
 class Solution{
     public:
-    int count = 0;
-    void merge(int arr[], int l, int m, int r)
-    {
-         vector<int> temp(r-l+1);
-         int i =l , j= m+1 , k = 0;
-         while(i <= m && j<= r){
-             if(arr[i] <= arr[j]) temp[k++] = arr[i++];
-             else count += m-i+1, temp[k++] = arr[j++];
-         }
-         while(i <= m) temp[k++] = arr[i++];
-         while(j <= r) temp[k++] = arr[j++];
-         for(int i =l , j =0 ;j < r-l+1;  i++) arr[i] = temp[j++];
-    }
-    
-    void mergeSort(int arr[], int l, int r)
-    {
-        if(l >= r) return;
-        int mid = (l+r)/2;
-        mergeSort(arr , l , mid);
-        mergeSort(arr , mid+1 , r);
-        merge(arr , l , mid , r);
-    }
-    
     int countPairs(int arr[] , int n ) 
     {
         // Your code goes here   
-        for(int i = 0 ; i< n; i++)   arr[i] *= i;
-        mergeSort(arr , 0 , n-1);
-        return count;
+         vector<int> b,s;
+        for(int i=0;i<n;i++){
+            b.push_back((i * arr[i]));
+            s.push_back(b[i]);
+        }
+        sort(s.begin(), s.end());
+        int ans = 0;
+        for(int i=0; i<n; i++){
+            int i1 = lower_bound(s.begin(), s.end(), b[i]) - s.begin();
+            ans += i1;
+            s.erase((s.begin() + i1));
+        }
+        return ans;
     }
 };
 
