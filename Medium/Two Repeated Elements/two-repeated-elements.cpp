@@ -6,13 +6,9 @@ using namespace std;
 
 
 // } Driver Code Ends
-//User function template for C++
-
 class Solution {
   public:
-    //Function to find two repeated elements.
     vector<int> twoRepeated (int arr[], int n) {
-        // Your code here
         unordered_set<int>st;
        vector<int>v;
        for(int i=0; i<n+2; i++){
