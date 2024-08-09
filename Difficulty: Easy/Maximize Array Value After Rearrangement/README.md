@@ -8,5 +8,5 @@
 <pre><span style="font-size: 18px;"><strong>Input :</strong> arr[] = [1, 2, 3]
 <strong>Output :</strong> 8
 </span></pre>
-<p><span style="font-size: 18px;"><strong>Expected Time Complexity:</strong>&nbsp;O(nlog(n)).<br><strong>Expected Auxiliary Space:</strong>&nbsp;O(1).</span></p>
+<p><span style="font-size: 18px;"><strong>Expected Time Complexity:</strong> O(nlog(n))<br><strong>Expected Auxiliary Space:</strong> O(1)</span></p>
 <p><span style="font-size: 18px;"><span style="font-family: arial,helvetica,sans-serif;"><strong>Constraints:</strong><br>1 ≤ arr.size ≤ 10<sup>5</sup><br>1 ≤ arr<sub>i</sub> ≤ 10<sup>5</sup></span></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>SAP Labs</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Arrays</code>&nbsp;<code>Sorting</code>&nbsp;<code>Data Structures</code>&nbsp;<code>Algorithms</code>&nbsp;
