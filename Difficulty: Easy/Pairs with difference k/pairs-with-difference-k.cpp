@@ -6,6 +6,9 @@ using namespace std;
 
 // } Driver Code Ends
 // User function template for C++
+#include <vector>
+#include <algorithm>
+
 class Solution {
   public:
     /* Returns count of pairs with difference k  */
@@ -15,7 +18,7 @@ class Solution {
         int maxEle = 0;
         // Find the maximum element in the array.
         for (int i = 0; i < n; i++) {
-            maxEle = max(maxEle, arr[i]);
+            maxEle = std::max(maxEle, arr[i]);
         }
         // Create a hash table to store the occurrences of each element.
         vector<int> hash(maxEle + 1, 0);
@@ -29,7 +32,7 @@ class Solution {
             if (hash[i]) {
                 // If the difference is 0, calculate the number of pairs with difference
                 // 0.
-                if (i == i + k) {
+                if (k == 0) {
                     count += (hash[i] * (hash[i] - 1)) / 2;
                 } else if (i + k <= maxEle) {
                     // Calculate the number of pairs with difference k.
