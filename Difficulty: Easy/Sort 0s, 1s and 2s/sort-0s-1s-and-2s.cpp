@@ -8,20 +8,7 @@ class Solution {
   public:
     void sort012(vector<int>& arr) {
         // code here
-        int z = 0, t = arr.size() - 1;
-        
-        for(int i=z;i<=t;i++){
-            if(arr[i] == 0){
-                swap(arr[i], arr[z]);
-                if(i != z) i--;
-                z++;
-            }
-            else if(arr[i] == 2){
-                swap(arr[i], arr[t]);
-                if(i != t) i--;
-                t--;
-            }
-        }
+        sort(arr.begin(),arr.end());
     }
 };
 
@@ -51,6 +38,7 @@ int main() {
         }
 
         cout << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
