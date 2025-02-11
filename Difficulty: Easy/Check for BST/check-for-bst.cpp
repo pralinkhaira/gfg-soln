@@ -19,18 +19,34 @@ struct Node {
 // } Driver Code Ends
 class Solution {
   public:
-  Node *prev=NULL;
-    bool isBST(Node* root) {
-        if(root==NULL) return 1;
+    // Function to check whether a Binary Tree is BST or not.
+    void func(Node* root,vector<int>& ans){
+        if(root==NULL) return;
         
-        bool l=isBST(root->left);
-        if(prev && prev->data>=root->data) return 0;
-        prev=root;
-        bool r=isBST(root->right);
+        func(root->left,ans);
+        ans.push_back(root->data);
+        func(root->right,ans);
+        return;
         
-        return l&r;
     }
-    
+    bool isSorted(vector<int>& ans){
+        int n=ans.size();
+        for(int i=0;i<n-1;i++){
+            if(ans[i]>=ans[i+1])
+            return false;
+        }
+        return true;
+        
+    }
+    bool isBST(Node* root) {
+        // Your code here
+        
+        vector<int> ans;
+        func(root,ans);
+        
+        return isSorted(ans);
+        
+    }
 };
 
 
@@ -128,6 +144,7 @@ int main() {
 
         else
             cout << "false\n";
+        cout << "~" << endl;
     }
     return 0;
 }
