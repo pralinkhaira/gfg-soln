@@ -1,88 +1,109 @@
 //{ Driver Code Starts
-// Initial Template for C++
 #include <bits/stdc++.h>
 using namespace std;
 
 
 // } Driver Code Ends
-// User function template for C++
 
 class Solution {
   public:
-   int fun( queue<int>&q){
-        int m=0;
-        int s=q.size();
-        for(int i=0;i<s;i++){
-            int a=q.front();
-            q.pop();
-            q.push(a);
-            m=max(m,a);
+    vector<int> maxOfSubarrays(vector<int>& arr, int k) {
+        
+        
+        
+        deque<int> qu;
+        vector<int> ans;
+        
+        for(int i = 0; i < arr.size(); i++) {
+            while(!qu.empty() && qu.back() < arr[i]) qu.pop_back();
+            qu.push_back(arr[i]);
+            
+            if(i >= (k - 1)) {
+                ans.push_back(qu.front());
+                if(arr[i - k + 1] == qu.front()) qu.pop_front();
+            }
         }
         
-        return m;
-    }
-    // Function to find maximum of each subarray of size k.
-    vector<int> max_of_subarrays(int k, vector<int> &arr) {
-        // your code here
-          vector<int> vec;
-    if (arr.size() < k || k <= 0) return vec;
-    queue<int> q;
-    int m = INT_MIN;
-    for (int i = 0; i < k; i++) {
-        m = max(m, arr[i]);
-        q.push(arr[i]);
-    }
-    vec.push_back(m);
-     
-     for(int i=k;i<arr.size();i++){
-         int a=q.front();
-         q.pop();
-         q.push(arr[i]);
-         if(a==m){
-            if(a<arr[i]){
-                m=arr[i];
-            }
-            else{
-                m=fun(q); 
-            }
-         }
-         else{
-             if(m<arr[i]){
-                 m=arr[i];
-             }
-         }
-         vec.push_back(m);
-     }   
-  return vec;   
+        return ans;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // code here
+        // vector<int>maxValue;
+        // int max = 0;
+        // int value = 0;
+        
+        // for(int i=0;i<arr.size();i++)
+        // {
+        //     int n = k+i;
+        //     if(n>arr.size()) return maxValue;
+        //     for(int j=i;j<n;j++)
+        //     {
+        //         value = arr[j];
+                
+        //         if(max < value)
+        //         {
+        //             max = value;
+        //         }
+        //     }
+            
+        //     maxValue.push_back(max);
+            
+        //     max = 0;
+        //     value = 0;
+        // }
+        
+        // return maxValue;
     }
 };
+
 
 //{ Driver Code Starts.
 
 int main() {
-
     int t;
     cin >> t;
-    cin.ignore();
+    cin.ignore(); // Ignore newline character after t
 
     while (t--) {
-
-        string ks;
-        getline(cin, ks);
-        int k = stoi(ks);
         vector<int> arr;
-        string input;
-        getline(cin, input);
-        stringstream ss(input);
-        int number;
-        while (ss >> number) {
-            arr.push_back(number);
+        int k;
+        string inputLine;
+
+        getline(cin, inputLine); // Read the array input as a line
+        stringstream ss(inputLine);
+        int value;
+        while (ss >> value) {
+            arr.push_back(value);
         }
+
+        cin >> k;
+        cin.ignore(); // Ignore newline character after k input
+
         Solution obj;
-        vector<int> res = obj.max_of_subarrays(k, arr);
+        vector<int> res = obj.maxOfSubarrays(arr, k);
         for (int i = 0; i < res.size(); i++)
             cout << res[i] << " ";
         cout << endl;
+        cout << "~"
+             << "\n";
     }
 
     return 0;
