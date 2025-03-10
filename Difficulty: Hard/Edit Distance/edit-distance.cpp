@@ -1,60 +1,63 @@
 //{ Driver Code Starts
+// Initial Template for C++
 #include <bits/stdc++.h>
 using namespace std;
 
 
 // } Driver Code Ends
+
 class Solution {
   public:
-    int editDistance(string str1, string str2) {
-        int n = str1.size(), m =str2.size();
+    // Function to compute the edit distance between two strings
+    int editDistance(string& s1, string& s2) {
+        int m = s1.size(), n = s2.size();
+        // Create a 2D dp table with (m+1) x (n+1) dimensions
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
         
-        vector<vector<int>> dp(n, vector<int>(m, -1));
-        
-        return solve(0,0,n,m,str1,str2,dp);
-    }
-    int solve(int i,int j,int n,int m,string str1,string str2,vector<vector<int>> &dp){
-        
-        if(i==n){
-            //insert extra char from str2
-            return m-j;
+        // Base case: when one string is empty
+        for (int i = 0; i <= m; ++i) {
+            dp[i][0] = i;  // i deletions needed for s1 to match an empty string
         }
-        if(j==m){
-            //delete extra char from str1
-            return n-i;
+        for (int j = 0; j <= n; ++j) {
+            dp[0][j] = j;  // j insertions needed to form s2 from an empty string
         }
         
-        
-        if(dp[i][j]!=-1){
-            return dp[i][j];
+        // Build the dp table
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (s1[i - 1] == s2[j - 1]) {
+                    // If characters match, no additional operation is needed
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    // Consider insert, remove, or replace operations
+                    dp[i][j] = 1 + min({dp[i - 1][j],    // Remove
+                                        dp[i][j - 1],    // Insert
+                                        dp[i - 1][j - 1] // Replace
+                                       });
+                }
+            }
         }
         
-        
-        if(str1[i]==str2[j])    return dp[i][j] = solve(i+1,j+1,n,m,str1,str2,dp);
-        
-        //insert
-        int insertion = solve(i,j+1,n,m,str1,str2,dp);
-        
-        //delete
-        int deletion = solve(i+1,j,n,m,str1,str2,dp);
-        
-        //replace
-        int replace = solve(i+1,j+1,n,m,str1,str2,dp);
-        
-        return dp[i][j] = 1+min(insertion, min(deletion,replace));
+        return dp[m][n];
     }
 };
 
 //{ Driver Code Starts.
+
 int main() {
+
     int T;
     cin >> T;
+    cin.ignore();
     while (T--) {
-        string s, t;
-        cin >> s >> t;
+        string s1;
+        getline(cin, s1);
+        string s2;
+        getline(cin, s2);
         Solution ob;
-        int ans = ob.editDistance(s, t);
+        int ans = ob.editDistance(s1, s2);
         cout << ans << "\n";
+        cout << "~" << endl;
     }
     return 0;
 }
