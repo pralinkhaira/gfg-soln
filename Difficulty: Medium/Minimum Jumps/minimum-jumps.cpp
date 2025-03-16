@@ -4,48 +4,38 @@ using namespace std;
 
 
 // } Driver Code Ends
-// Function to return minimum number of jumps to end of array
 
 class Solution {
   public:
-    int minJumps(vector<int>& arr) {
-        int n = arr.size();
-        if (n == 1) return 0;
-    
-        // If the first element is 0, we can't move forward
-        if (arr[0] == 0) return -1;
-    
-        int maxReach = arr[0]; // The maximum index we can currently reach
-        int step = arr[0];     
-        int jumps = 1;         
-    
-        for (int i = 1; i < n; i++) {
-        // If we've reached the last index
-        if (i == n - 1) return jumps;
-        
-        // Update maxReach
-        maxReach = max(maxReach, i + arr[i]);
-        
-        // Use a step to move forward
-        step--;
-        
-        // If no steps are remaining
-        if (step == 0) {
-            jumps++; // We need another jump
-            
-            // If the current index exceeds maxReach, return -1
-            if (i >= maxReach) return -1;
-            
-            // Reinitialize the steps for the next jump range
-            step = maxReach - i;
+    int helper(int i, vector<int>& arr, int n, vector<int>& dp){
+        // base case
+        if(i == n-1){
+            return 0;
         }
+        
+        if(dp[i] != -1) return dp[i];
+        
+        int ans = INT_MAX;
+        for(int j = i+1; j <= (i+arr[i]) && j < n; j++){
+            int val = helper(j, arr, n, dp);
+            
+            if(val != INT_MAX){
+                ans = min(ans, val+1);
+            }
+        }
+        return dp[i] = ans;
     }
     
-    return -1;
+    int minJumps(vector<int>& arr) {
+        // code here
+        int n = arr.size();
+        vector<int> dp(n, -1);
+        int ans = helper(0, arr, n, dp);
+        
+        if(ans == INT_MAX) return -1;
+        return ans;
     }
-    
 };
-
 
 //{ Driver Code Starts.
 
@@ -65,7 +55,7 @@ int main() {
             arr.push_back(number);
         }
         Solution obj;
-        cout << obj.minJumps(arr) << endl;
+        cout << obj.minJumps(arr) << endl << "~\n";
     }
     return 0;
 }
