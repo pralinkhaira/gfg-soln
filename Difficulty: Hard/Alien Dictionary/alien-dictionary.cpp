@@ -1,97 +1,130 @@
 //{ Driver Code Starts
-// Initial Template for C++
-
 #include <bits/stdc++.h>
 using namespace std;
 
+
 // } Driver Code Ends
-// User function Template for C++
 
 class Solution {
-    public:
-    string ans;
-    vector<bool> vis,cur;
-    unordered_set<int> g[26]; // Graph
-    
-    void topological_sort(int r) {
-        vis[r]=cur[r]=1;
-        for(int i:g[r]) 
-            if(!vis[i])
-                topological_sort(i);
-        
-        ans=char(97+r)+ans;
-        cur[r]=0;
+  public:
+    string topoSort(unordered_map<char,vector<char>>&adj,vector<bool>&vis,vector<int>&indeg){
+        queue<char>q;
+        for(int i=0;i<26;i++){
+            if(vis[i]&&indeg[i]==0){
+                q.push(i+'a');
+            }
+        }
+        string result;
+        while(!q.empty()){
+            char u=q.front();
+            q.pop();
+            result+=u;
+            for(char v:adj[u]){
+                indeg[v-'a']--;
+                if(indeg[v-'a']==0){
+                    q.push(v);
+                }
+            }
+        }
+        for(int i=0;i<26;i++){
+            if(vis[i]&&indeg[i]!=0){
+                return "";
+            }
+        }
+        return result;
     }
-    
-    string findOrder(string arr[], int N, int K) {
-        ans="";
-        vis.assign(26,0); 
-        cur=vis;
-      
-         for(int i=1;i<N;i++) {
-          string a=arr[i-1],b=arr[i];
-          int l=0,n=min(a.size(),b.size());
-          while(l<n && a[l]==b[l]) 
-                l++;
-          if(l!=n) g[a[l]-'a'].insert(b[l]-'a');
-         }
-      
-       for(int i=0;i<K;i++)
-            if(!vis[i])
-                topological_sort(i);
-        return ans;
+    string findOrder(vector<string> &words) {
+        // code here
+        unordered_map<char,vector<char>>adj;
+        vector<int>indeg(26);
+        vector<bool>vis(26,false);
+        for(auto &str:words){
+            for(auto &ch:str){
+                vis[ch-'a']=true;
+            }
+        }
+        int N=words.size();
+        for(int i=0;i<N-1;i++){
+            string s1=words[i];
+            string s2=words[i+1];
+            int minLen=min(s1.size(),s2.size());
+            if (s1.length() > s2.length() && s1.substr(0, s2.length()) == s2) {
+                return "";
+            }
+            for(int ptr=0;ptr<minLen;ptr++){
+                if(s1[ptr]==s2[ptr]) continue;
+                else if(s1[ptr]!=s2[ptr]) {
+                    adj[s1[ptr]].push_back(s2[ptr]);
+                    indeg[s2[ptr]-'a']++;
+                    break;
+                }
+            }
+        }
+        return topoSort(adj,vis,indeg);
     }
 };
 
 //{ Driver Code Starts.
-string order;
 
-bool f(string a, string b) {
-    int p1 = 0;
-    int p2 = 0;
-    for (int i = 0; i < min(a.size(), b.size()) and p1 == p2; i++) {
-        p1 = order.find(a[i]);
-        p2 = order.find(b[i]);
-        //	cout<<p1<<" "<<p2<<endl;
+bool validate(const vector<string> &original, const string &order) {
+    unordered_map<char, int> mp;
+    for (const string &word : original) {
+        for (const char &ch : word) {
+            mp[ch] = 1;
+        }
+    }
+    for (const char &ch : order) {
+        if (mp.find(ch) == mp.end())
+            return false;
+        mp.erase(ch);
+    }
+    if (!mp.empty())
+        return false;
+
+    for (int i = 0; i < order.size(); i++) {
+        mp[order[i]] = i;
     }
 
-    if (p1 == p2 and a.size() != b.size())
-        return a.size() < b.size();
-
-    return p1 < p2;
+    for (int i = 0; i < original.size() - 1; i++) {
+        const string &a = original[i];
+        const string &b = original[i + 1];
+        int k = 0, n = a.size(), m = b.size();
+        while (k < n and k < m and a[k] == b[k]) {
+            k++;
+        }
+        if (k < n and k < m and mp[a[k]] > mp[b[k]]) {
+            return false;
+        }
+        if (k != n and k == m) {
+            return false;
+        }
+    }
+    return true;
 }
 
-// Driver program to test above functions
 int main() {
-    int t;
-    cin >> t;
+    string str;
+    getline(cin, str);
+    int t = stoi(str);
     while (t--) {
-        int N, K;
-        cin >> N >> K;
-        string dict[N];
-        for (int i = 0; i < N; i++)
-            cin >> dict[i];
+        getline(cin, str);
+        stringstream ss(str);
+        string curr;
+        vector<string> words;
+        while (ss >> curr)
+            words.push_back(curr);
 
-        Solution obj;
-        string ans = obj.findOrder(dict, N, K);
-        order = "";
-        for (int i = 0; i < ans.size(); i++)
-            order += ans[i];
+        vector<string> original = words;
 
-        string temp[N];
-        std::copy(dict, dict + N, temp);
-        sort(temp, temp + N, f);
+        Solution ob;
+        string order = ob.findOrder(words);
 
-        bool f = true;
-        for (int i = 0; i < N; i++)
-            if (dict[i] != temp[i])
-                f = false;
-
-        if (f)
-            cout << 1;
-        else
-            cout << 0;
-        cout << endl;
+        if (order.empty()) {
+            cout << "\"\"" << endl;
+        } else {
+            cout << (validate(original, order) ? "true" : "false") << endl;
+        }
+        cout << "~" << endl;
     }
     return 0;
 }
