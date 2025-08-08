@@ -1,0 +1,10 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/longest-prefix-suffix2527/1">Longest Prefix Suffix</a></h2><h3>Difficulty Level : Difficulty: Hard</h3><hr><div class="problems_problem_content__Xm_eO" bis_skin_checked="1"><p><span style="font-size: 18px;">Given a string <strong>s</strong>,<strong> </strong>of lowercase english alphabets, find the length of the longest proper <strong>prefix</strong> which is also a<strong> suffix</strong>.<br></span><span style="font-size: 18px;"><strong>Note:</strong> Prefix and suffix can be <strong>overlapping</strong> but they should not be equal to the entire string.</span></p>
+<p><strong><span style="font-size: 18px;">Examples :</span></strong></p>
+<pre><span style="font-size: 18px;"><strong>Input:</strong> s = "abab"</span>
+<span style="font-size: 18px;"><strong>Output:</strong> 2
+<strong>Explanation:</strong> The string "ab" is the longest prefix and suffix. </span></pre>
+<pre><strong><span style="font-size: 18px;">Input:</span></strong><span style="font-size: 18px;"> s = "aabcdaabc"<br></span><span style="font-size: 18px;"><strong>Output: </strong>4<br><strong>Explanation:</strong> The string "aabc" is the longest prefix and suffix.<br></span></pre>
+<pre><span style="font-size: 18px;"><strong>Input:</strong> s = "aaaa"</span>
+<span style="font-size: 18px;"><strong>Output:</strong> 3
+<strong>Explanation:</strong> "aaa" is the longest prefix and suffix. </span></pre>
+<p><span style="font-size: 18px;"><strong>Constraints:</strong></span><br><span style="font-size: 18px;">1 ≤ s.size() ≤ 10<sup>6</sup><br>s&nbsp;contains only lowercase English alphabets.</span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Accolite</code>&nbsp;<code>Amazon</code>&nbsp;<code>Microsoft</code>&nbsp;<code>MakeMyTrip</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Strings</code>&nbsp;<code>Data Structures</code>&nbsp;
