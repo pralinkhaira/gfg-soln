@@ -1,0 +1,12 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/find-length-of-loop/1">Find length of Loop</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO" bis_skin_checked="1"><p><span style="font-size: 14pt;">Given the <strong>head </strong>of a linked list, determine whether the list contains a <strong>loop</strong>. If a loop is present,&nbsp;return the<strong> number of nodes</strong>&nbsp;in the loop, otherwise&nbsp;return<strong> 0</strong>.</span></p>
+<p><span style="font-size: 14pt;"><strong>Note: </strong>Internally, pos(1 based index) is used to denote the position of the node that tail's next pointer is connected to. If pos = 0, it means the last node points to null, indicating there is no loop. Note that pos is not passed as a parameter.</span></p>
+<p><span style="font-size: 14pt;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>pos = 2,<br> &nbsp; <img src="https://media.geeksforgeeks.org/img-practice/prod/addEditProblem/904501/Web/Other/blobid0_1756186026.webp" width="434" height="90"><strong>
+Output: </strong>4<strong>
+Explanation: </strong>There exists a loop in the linked list and the length of the loop is 4.<br></span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>pos = 3,<br>   <img src="https://media.geeksforgeeks.org/img-practice/prod/addEditProblem/904501/Web/Other/blobid0_1756128118.webp" width="478" height="99">
+<strong>Output:</strong> 3
+<strong>Explanation: </strong>The loop is from 19 to 10. So length of loop is 19 → 33 → 10 = 3.</span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>pos = 0,<br>    <img src="https://media.geeksforgeeks.org/img-practice/prod/addEditProblem/904501/Web/Other/blobid1_1756128178.webp" width="512" height="68"><br><strong>Output: </strong>0<strong>
+Explanation: </strong>There is no loop.<br></span></pre>
+<p><span style="font-size: 14pt;"><strong>Constraints:</strong><br>1 ≤ number of nodes ≤ 10<sup>5</sup><sup><br></sup>1 ≤ node-&gt;data ≤ 10<sup>4</sup><br>0 ≤ pos &lt; number of nodes</span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Amazon</code>&nbsp;<code>Adobe</code>&nbsp;<code>Qualcomm</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Linked List</code>&nbsp;<code>Data Structures</code>&nbsp;
