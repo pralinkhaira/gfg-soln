@@ -1,7 +1,6 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/next-greater-element/1">Next Greater Element in Circular Array</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given a circular integer array <strong>arr[]</strong>, the task is to determine the next greater element <strong>(NGE)</strong> for each element in the array.</span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/next-greater-element/1">Next Greater Element in Circular Array</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO" bis_skin_checked="1"><p><span style="font-size: 18px;">Given a circular integer array <strong>arr[]</strong>, the task is to determine the next greater element <strong>(NGE)</strong> for each element in the array.</span></p>
 <p><span style="font-size: 18px;">The next greater element of an element <strong>arr[i]</strong> is the first element that is greater than <strong>arr[i]</strong> when traversing circularly. If no such element exists, return <strong>-1</strong> for that position.</span></p>
-<p><strong><span style="font-size: 18px;">Circular Property:</span></strong></p>
-<p><span style="font-size: 18px;">Since the array is circular, after reaching the last element, the search continues from the beginning until we have looked at all elements once.</span></p>
+<p><strong><span style="font-size: 18px;">Note: </span></strong><span style="font-size: 18px;">Since the array is circular, after reaching the last element, the search continues from the beginning until we have looked at all elements once.</span></p>
 <p><span style="font-size: 18px;"><strong>Examples:&nbsp;</strong></span></p>
 <pre><span style="font-size: 18px;"><strong>Input</strong>: arr[] = [1, 3, 2, 4]
 <strong>Output</strong>: [3, 4, 4, -1]
